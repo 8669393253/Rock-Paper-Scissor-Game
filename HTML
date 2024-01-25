@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="Shripriti_1.css">
+</head>
+<body>
+
+    <header>
+        <h1>Rock Paper Scissors Game</h1>
+    </header>
+
+    <section>
+        <h2>How to Play</h2>
+        <p>
+            Rock Paper Scissors is a simple hand game usually played between two people. Each player simultaneously
+            forms one of three shapes with their hand. The possible shapes are:
+        </p>
+        <ul>
+            <li>Rock</li>
+            <li>Paper</li>
+            <li>Scissors</li>
+        </ul>
+        <p>
+            The game has three possible outcomes, other than a tie: rock crushes scissors, scissors cuts paper, and
+            paper covers rock. If both players choose the same shape, the game is a tie.
+        </p>
+    </section>
+
+    <div id="game-container">
+        <h1>Rock Paper Scissors Game</h1>
+
+        <div class="options">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const options = ["rock", "paper", "scissors"];
+
+            function computerChoice() {
+                const randomIndex = Math.floor(Math.random() * 3);
+                return options[randomIndex];
+            }
+
+            function determineWinner(userChoice, computerChoice) {
+                if (userChoice === computerChoice) {
+                    return "It's a tie!";
+                } else if (
+                    (userChoice === "rock" && computerChoice === "scissors") ||
+                    (userChoice === "paper" && computerChoice === "rock") ||
+                    (userChoice === "scissors" && computerChoice === "paper")
+                ) {
+                    return "You win!";
+                } else {
+                    return "Computer wins!";
+                }
+            }
+
+            function playGame(userChoice) {
+                const compChoice = computerChoice();
+                const result = determineWinner(userChoice, compChoice);
+
+                document.getElementById("result").innerText = `You chose ${userChoice}, computer chose ${compChoice}. ${result}`;
+            }
+
+            // Event listeners for button clicks
+            document.getElementById("rock").addEventListener("click", function () {
+                playGame("rock");
+            });
+
+            document.getElementById("paper").addEventListener("click", function () {
+                playGame("paper");
+            });
+
+            document.getElementById("scissors").addEventListener("click", function () {
+                playGame("scissors");
+            });
+        });
+    </script>
+
+</body>
+</html>
